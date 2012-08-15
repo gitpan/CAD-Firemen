@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Analyze;
 {
-  $CAD::Firemen::Analyze::VERSION = '0.5.1';
+  $CAD::Firemen::Analyze::VERSION = '0.5.3';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(compare checkConfig checkTreeConfig optionsToIngoreAtPathCheckings);
@@ -559,7 +559,7 @@ CAD::Firemen::Analyze - Module provides functions to compare to lists with optio
 
 =head1 VERSION
 
-version 0.5.1
+version 0.5.3
 
 =head1 METHODS
 

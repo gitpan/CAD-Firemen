@@ -247,8 +247,9 @@ foreach my $opt (keys(%cfgOptions)){
     foreach my $line (keys(%{$cfgOptions{$opt}})){
       # The first regex detects all strings containing $PRO_DIRECTORY
       # and all strings with *.[A-Za-z0-9]{1,5} as ending.
+	  # The middle cause excludes urls starting with http
       # The last regex matches all numbers, which are excluded (!~), because they are matched by the first regex.
-      if(($cfgOptions{$opt}->{$line} =~ m/\$PRO_DIRECTORY|[^\.]+\.[0-9a-zA-Z]{1,5}$/) && ($cfgOptions{$opt}->{$line} !~ m/^[0-9\.]+$/)){
+      if(($cfgOptions{$opt}->{$line} =~ m/\$PRO_DIRECTORY|[^\.]+\.[0-9a-zA-Z]{1,5}$/) && (substr($cfgOptions{$opt}->{$line}, 0, 7) ne "http://") && ($cfgOptions{$opt}->{$line} !~ m/^[0-9\.]+$/)){
         my $url = $cfgOptions{$opt}->{$line};
         $url =~ s/\$PRO_DIRECTORY/$structUrl/;
         # check whether file or directory exists
@@ -467,7 +468,7 @@ fm_check_struct - Runs some tests on a given file structure with custom files.
 
 =head1 VERSION
 
-version 0.5.1
+version 0.5.3
 
 =head1 SYNOPSIS
 

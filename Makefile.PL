@@ -53,10 +53,11 @@ my %WriteMakefileArgs = (
     'Win32' => '0',
     'Win32::Console::ANSI' => '0',
     'Win32::Shortcut' => '0',
+    'XML::LibXML' => '0',
     'YAML::XS' => '0',
     'constant' => '0'
   },
-  'VERSION' => '0.5.1',
+  'VERSION' => '0.5.3',
   'test' => {
     'TESTS' => 't/*.t'
   }

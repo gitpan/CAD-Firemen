@@ -319,7 +319,7 @@ fm_diff_cdb - Analyzes and displays the differences between two cdb files.
 
 =head1 VERSION
 
-version 0.5.1
+version 0.5.3
 
 =head1 SYNOPSIS
 

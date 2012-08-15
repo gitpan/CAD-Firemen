@@ -28,6 +28,7 @@ use warnings;
 use Getopt::Long;
 use Archive::Zip qw/ :ERROR_CODES :CONSTANTS/;
 use HTML::TreeBuilder;
+use XML::LibXML;
 use Tie::File;
 use Term::ProgressBar;
 use DBI;
@@ -56,6 +57,8 @@ sub help {
   print " --output           -o   Optional filepath to store the created data.\n";
   print " --locale           -l   The locale which should be used (Default en_US).\n";
   print " --crossfire        -c   Store the output in the format of Crossfire. Set file with --output.\n";
+  print " --notepad          -n   Create some Notepad++ help files. Set directory with --output.\n";
+  print "                         For further information call perldoc fm_create_help\n";
   print "\n";
   print "If no PATH_TO_INSTALLATION is given, it tries to figure out the correct installation with help of \$ENV{PATH}.\n";
 }
@@ -91,7 +94,7 @@ sub findUrls{
   }
   else{
     $regex = "toc/". $locale .".xml\$";
-    if(($tocUrl eq "") && ($file =~ m/$regex/)){
+    if(($tocUrl eq "") && ($file =~ m/$regex/i)){
       $tocUrl = $file;
       testPassed("Found help toc (". $tocUrl .")");
     }
@@ -103,6 +106,7 @@ my $help = 0;
 my $verbose = 0;
 my $outputFile = "";
 my $crossfire = 0;
+my $notepad = 0;
 
 Getopt::Long::Configure ("bundling");
 GetOptions(
@@ -111,7 +115,8 @@ GetOptions(
   'verbose|v:i' => \$verbose,
   'output|o:s' => \$outputFile,
   'locale|l:s' => \$locale,
-  'crossfire|c' => \$crossfire
+  'crossfire|c' => \$crossfire,
+  'notepad|n' => \$notepad
 );
 
 if($help){
@@ -142,6 +147,12 @@ if($locale !~ m/[a-z]{2}_[A-Z]{2}/){
 
 if($crossfire && $outputFile eq ""){
   print "Please specify an output file with help of --output\n";
+  help();
+  exit 1;
+}
+
+if($notepad && !-d $outputFile){
+  print "Please specify an existend output directory with help of --output\n";
   help();
   exit 1;
 }
@@ -395,6 +406,285 @@ if($crossfire){
   }
   close($CROSS);
 }
+elsif($notepad){
+  # compute file name
+  my $file = "";
+  my $version = "";
+  if($structUrl =~ m/^.+((?:creo|proe)[^(?:\\|\/)]+).{0,}/i){
+    $version = $1;
+    $version =~ s/\s//g;
+    $version =~ s/\./_/g;
+  }
+  my $fileAPI = $outputFile ."/". $version .".xml";
+  my $fileUDL = $outputFile ."/". $version ."-udl.xml";
+
+  # creating the API auto complete file
+  # (Should be placed in plugins/API)
+  my $docAPI = XML::LibXML::Document->new("1.0", "UTF-8");
+   # creating the user defined language file
+  # (Must be imported at the UDL Dialog at View-> User defined languages)
+  my $docUDL = XML::LibXML::Document->new("1.0", "UTF-8");
+
+  # prepare docAPI
+  my $root = $docAPI->createElement("NotepadPlus");
+  $docAPI->setDocumentElement($root);
+  # insert header comment
+  my $elem = $docAPI->createComment("\@author Firemen\n \@version ". strftime("%Y%m%d", localtime()) ."\n");
+  $root->appendChild($elem);
+  my $autoc = $docAPI->createElement("AutoComplete");
+  $root->appendChild($autoc);
+  $autoc->setAttribute("language", $version);
+  $elem = $docAPI->createElement("Environment");
+  $autoc->appendChild($elem);
+  $elem->setAttribute("ignoreCase", "yes");
+  $elem->setAttribute("startFunc", " ");
+  $elem->setAttribute("stopFunc", "");
+
+
+  # prepare docUDL
+  $root = $docUDL->createElement("NotepadPlus");
+  $docUDL->setDocumentElement($root);
+  my $udl = $docUDL->createElement("UserLang");
+  $root->appendChild($udl);
+  $udl->setAttribute("name", $version);
+  my $versionNum = $version;
+  $versionNum =~ s/[^\d]//g;
+  $udl->setAttribute("ext", "proe". $versionNum);
+
+  my $settings = $docUDL->createElement("Settings");
+  $udl->appendChild($settings);
+  $elem = $docUDL->createElement("Global");
+  $settings->appendChild($elem);
+  $elem->setAttribute("caseIgnored", "yes");
+  $elem = $docUDL->createElement("TreatAsSymbol");
+  $settings->appendChild($elem);
+  $elem->setAttribute("comment", "no");
+  $elem->setAttribute("commentLine", "no");
+  $elem = $docUDL->createElement("Prefix");
+  $settings->appendChild($elem);
+  $elem->setAttribute("words1", "no");
+  $elem->setAttribute("words2", "no");
+  $elem->setAttribute("words3", "no");
+  $elem->setAttribute("words4", "no");
+  my $keywordLists = $docUDL->createElement("KeywordLists");
+  $udl->appendChild($keywordLists);
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Delimiters");
+  $elem->appendText("000000");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Folder+");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Folder-");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Operators");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Comment");
+  $elem->appendText("1 2 0!");
+  my $words1 = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($words1);
+  $words1->setAttribute("name", "Words1");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Words2");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Words3");
+  $elem = $docUDL->createElement("Keywords");
+  $keywordLists->appendChild($elem);
+  $elem->setAttribute("name", "Words4");
+  my $styles = $docUDL->createElement("Styles");
+  $udl->appendChild($styles);
+  my @wordStyles = (
+    {
+      "name" => "DEFAULT",
+      "styleID" => 11,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0,
+      "fontSize" => 10
+    },
+    {
+      "name" => "FOLDEROPEN",
+      "styleID" => 12,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "FOLDERCLOSE",
+      "styleID" => 13,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "KEYWORD1",
+      "styleID" => 5,
+      "fgColor" => "0000FF",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 1
+    },
+    {
+      "name" => "KEYWORD2",
+      "styleID" => 6,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "KEYWORD3",
+      "styleID" => 7,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "KEYWORD4",
+      "styleID" => 8,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "COMMENT",
+      "styleID" => 1,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "COMMENT LINE",
+      "styleID" => 2,
+      "fgColor" => "808040",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "NUMBER",
+      "styleID" => 4,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "OPERATOR",
+      "styleID" => 10,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "DELIMINER1",
+      "styleID" => 14,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "DELIMINER2",
+      "styleID" => 15,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    },
+    {
+      "name" => "DELIMINER3",
+      "styleID" => 16,
+      "fgColor" => "000000",
+      "bgColor" => "FFFFFF",
+      "fontName" => "",
+      "fontStyle" => 0
+    }
+  );
+  foreach my $refStyle (@wordStyles){
+    $elem = $docUDL->createElement("WordsStyle");
+    $styles->appendChild($elem);
+    foreach my $key (keys(%{$refStyle})){
+      $elem->setAttribute($key, $refStyle->{$key});
+    }
+  }
+
+  # insert all found options into the file
+  # we use cdbOptions here as base, to catch also those options, which we have not found at the documentation
+  my $max = scalar(keys(%cdbOptions));
+  $progress = Term::ProgressBar->new({name => "Inserting data", count => $max});
+  $progress->minor(0);
+  $i = 0;
+  my @words1Words = ();
+  foreach my $opt (sort(keys(%cdbOptions))){
+    # insert option
+    my $keyword = $docAPI->createElement("KeyWord");
+    $autoc->appendChild($keyword);
+    $keyword->setAttribute("name", lc($opt));
+    $keyword->setAttribute("func", "yes");
+
+    push(@words1Words, lc($opt));
+
+    my $description = "";
+    # description
+    if(exists($optionInfos{$opt})){
+      $description = $optionInfos{$opt};
+    }
+
+    # insert values
+    my @keys = keys(%{$cdbOptions{$opt}});
+    my $ref = $cdbOptions{$opt}->{$keys[0]};
+    if(!defined($ref)){
+      next;
+    }
+    my @values = ();
+    foreach my $value (keys(%{$ref})){
+      # treat every value as an overload of the function, because only one value can be choosen
+      my $overload = $docAPI->createElement("Overload");
+      $keyword->appendChild($overload);
+      $overload->setAttribute("retVal", "void");
+      $overload->setAttribute("descr", $description);
+      $elem = $docAPI->createElement("Param");
+      $overload->appendChild($elem);
+      $elem->setAttribute("name", $value);
+    }
+
+    $i++;
+    $progress->update($i);
+  }
+  if($i < $max){
+    $progress->update($max);
+  }
+  $words1->appendText(join(" ", @words1Words));
+
+  if(!$docAPI->toFile($fileAPI, 1)){
+    testFailed("Creating notepad files");
+    exit 1;
+  }
+  if(!$docUDL->toFile($fileUDL, 1)){
+    testFailed("Creating notepad files");
+    exit 1;
+  }
+  if($verbose > 0){
+    print "Please copy ". $fileAPI ." into plugins\\APIs at the Notepad directory.\n";
+    print "Afterwards start Notepad go to View --> User defined languages, and import ". $fileUDL ."\n";
+    print "On next restart of Notepad, you can choose your proe version as a lanuage and\n";
+    print "you'll get syntex highlighting and auto completion\n";
+  }
+}
 else{
   # creating the database
   my $dbh = dbConnect($structUrl, $verbose);
@@ -564,7 +854,7 @@ fm_create_help - Walks through an installation and tries to extract all options 
 
 =head1 VERSION
 
-version 0.5.1
+version 0.5.3
 
 =head1 SYNOPSIS
 
@@ -578,6 +868,7 @@ Options:
   --output           -o   Optional filepath to store the created data.
   --locale           -l   The locale which should be used (Default en_US).
   --crossfire        -c   Store the output in the format of Crossfire. Set file with --output.
+  --notepad          -n   Create some Notepad++ help files. Set directory with --output.
 
 If no PATH_TO_INSTALLATION is given, it tries to figure out the correct path with help of $ENV{PATH}.
 
@@ -609,6 +900,16 @@ data is stored in an SQLite Database afterwards. The structure is as shown below
                                                     |--------------------------|
                                                     | name VARCHAR(250)        |
                                                     |==========================|
+
+It can also create help files for Crossfire (see option --crossfire) or a user
+defined language (udl) with auto completion for use with Notepad++ (--notepad).
+The last command creates to files. One file is the auto completion file, which
+should be copied into the plugins\APIs folder within your Notepad++ directory.
+The other file, with a name ending with -udl, is the definition of the udl. To
+import this file, start Notepad++ and choose Import in the udl dialog,
+which can be found within the View menu. After next restart of Notepad++, you can
+use the auto completion and syntax highlighting for your configuration files after
+choosing the new udl at the language menu.
 
 =head1 AUTHOR
 

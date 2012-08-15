@@ -1,3 +1,9 @@
+0.5.3 2012-08-15
+	* fm_create_help fixed not escaped character
+0.5.2 2011-10-21
+  * fm_create_help is able to create user defined language for Notepad++ with auto completion support
+	* fm_create_help now searches toc files case insensitive (e.g. en_US or en_us is found)
+	* fm_check_struct excludes all string starting with http:// from path and file checking
 0.5.1 2011-10-19
   * Fixing naming issue Firemen to CAD-Firemen
   * Fixing some other naming issues within the documentation and CAD::Firemen::Common::printVersion()

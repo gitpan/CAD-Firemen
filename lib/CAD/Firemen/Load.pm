@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Load;
 {
-  $CAD::Firemen::Load::VERSION = '0.5.1';
+  $CAD::Firemen::Load::VERSION = '0.5.3';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(loadConfig loadCDB loadDatabase);
@@ -212,7 +212,7 @@ CAD::Firemen::Load - Module to parse files from Firemen (like pro and cdb files)
 
 =head1 VERSION
 
-version 0.5.1
+version 0.5.3
 
 =head1 METHODS
 
