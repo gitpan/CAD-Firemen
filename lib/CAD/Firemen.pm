@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 ######################
 #
-#    Copyright (C) 2011  TU Clausthal, Institut für Maschinenwesen, Joachim Langenbach
+#    Copyright (C) 2011  TU Clausthal, Institut fuer Maschinenwesen, Joachim Langenbach
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,14 +19,14 @@
 ######################
 
 # Pod::Weaver infos
-# ABSTRACT: Scripts and Modules to manage PTC(R) Pro/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.
+# ABSTRACT: Scripts and Modules to manage PTC(R) ProE/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.
 
 use strict;
 use warnings;
 
 package CAD::Firemen;
 {
-  $CAD::Firemen::VERSION = '0.5.3';
+  $CAD::Firemen::VERSION = '0.5.4';
 }
 
 use CAD::Firemen::Analyze;
@@ -55,23 +55,35 @@ sub printVersion {
 }
 
 1;
+
 __END__
+
 =pod
 
 =head1 NAME
 
-CAD::Firemen - Scripts and Modules to manage PTC(R) Pro/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.
+CAD::Firemen - Scripts and Modules to manage PTC(R) ProE/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.
 
 =head1 VERSION
 
-version 0.5.3
+version 0.5.4
 
 =head1 SYNOPSIS
 
-This module provides 5 executables to help you manage your Pro/Engineer / Creo configurations.
+#  fm_create_help -l "de_DE";
+#  fm_diff_cdb PATH_TO_DATABSE_1.CDB PATH_TO_DATABSE_2.CDB;
+#  fm_diff_cdb -d;
+#  fm_option_info PATH_TO_DATABSE.CDB OPTION_NAME;
+#  fm_diff_config PATH_TO_CONFIG_1 PATH_TO_CONFIG_2;
+#  fm_check_config PATH_TO_DATABASE.CDB PATH_TO_CONFIG;
+#  fm_check_struct PATH_TO_DATABASE.cdb PATH_TO_STRUCTURE;
+
+=head1 DESCRIPTION
+
+This module provides five executables to help you manage your Pro/Engineer / Creo configurations.
 To display all new and removed options between releases, use fm_diff_cdb. If you want to check,
 whether an option is supported in an given release and which values can be assigned to this option, use fm_option_info.
-fm_diff_config allows you to analyze 2 config files and displays added, removed and changed options.
+fm_diff_config allows you to analyze two config files and displays added, removed and changed options.
 This command can also be used to display changes of default values between to releases (see it's help).
 The command fm_check_config checks, that all option listed in given config are also known
 by the specified release. To complete the checks before releasing a new version of the config files
@@ -92,7 +104,7 @@ Compare all available options:
 
   fm_diff_cdb PATH_TO_DATABSE_1.CDB PATH_TO_DATABSE_2.CDB
 
-To display changed default values and/or descriptions for each option, use
+To display changed default values and btw. or descriptions for each option, use
 
   fm_diff_cdb -d
 
@@ -100,7 +112,7 @@ Check whether option exists and display possible values:
 
   fm_option_info PATH_TO_DATABSE.CDB OPTION_NAME
 
-Analyze the differences between 2 config files:
+Analyze the differences between two config files:
 
   fm_diff_config PATH_TO_CONFIG_1 PATH_TO_CONFIG_2
 
@@ -151,4 +163,3 @@ This is free software, licensed under:
   The GNU General Public License, Version 2, June 1991
 
 =cut
-

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 ######################
 #
-#    Copyright (C) 2011  TU Clausthal, Institut für Maschinenwesen, Joachim Langenbach
+#    Copyright (C) 2011  TU Clausthal, Institut fuer Maschinenwesen, Joachim Langenbach
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Load;
 {
-  $CAD::Firemen::Load::VERSION = '0.5.3';
+  $CAD::Firemen::Load::VERSION = '0.5.4';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(loadConfig loadCDB loadDatabase);
@@ -203,7 +203,9 @@ sub _extractParameters {
 }
 
 1;
+
 __END__
+
 =pod
 
 =head1 NAME
@@ -212,7 +214,7 @@ CAD::Firemen::Load - Module to parse files from Firemen (like pro and cdb files)
 
 =head1 VERSION
 
-version 0.5.3
+version 0.5.4
 
 =head1 METHODS
 
@@ -299,4 +301,3 @@ This is free software, licensed under:
   The GNU General Public License, Version 2, June 1991
 
 =cut
-

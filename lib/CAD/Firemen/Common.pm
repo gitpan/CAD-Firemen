@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 ######################
 #
-#    Copyright (C) 2011  TU Clausthal, Institut für Maschinenwesen, Joachim Langenbach
+#    Copyright (C) 2011 - 2013 TU Clausthal, Institut fuer Maschinenwesen, Joachim Langenbach
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Common;
 {
-  $CAD::Firemen::Common::VERSION = '0.5.3';
+  $CAD::Firemen::Common::VERSION = '0.5.4';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(
@@ -136,6 +136,13 @@ sub printColored {
   my $text = untaint(shift);
   my $color = untaint(shift);
 
+  if(!defined($text)){
+    return;
+  }
+  if(!defined($color) or ($color eq "")){
+    $color = "RESET";
+  }
+
   print colored($text, $color);
   print color 'reset';
 }
@@ -144,10 +151,13 @@ sub printColored {
   my $text = untaint(shift);
   my $indent = untaint(shift);
   my $color = untaint(shift);
+  if(!defined($text)){
+    return;
+  }
   if(!defined($indent)){
     $indent = 0;
   }
-  if(!defined($color)){
+  if(!defined($color) or ($color eq "")){
     $color = "RESET";
   }
   # -2 is the linebreak
@@ -155,7 +165,7 @@ sub printColored {
   my $textWidth = $terminalWidth - $indent;
 
   # remove all linebreaks
-  $text =~ s/[\n\r]//gs;
+  $text =~ s/[\n\r]/ /gs;
 
   my $start = 0;
   my $end = $textWidth;
@@ -431,7 +441,9 @@ sub _terminalWidth {
 }
 
 1;
+
 __END__
+
 =pod
 
 =head1 NAME
@@ -440,7 +452,7 @@ CAD::Firemen::Common - Shared functions used by other scripts from the Firemen m
 
 =head1 VERSION
 
-version 0.5.3
+version 0.5.4
 
 =head1 METHODS
 
@@ -563,4 +575,3 @@ This is free software, licensed under:
   The GNU General Public License, Version 2, June 1991
 
 =cut
-

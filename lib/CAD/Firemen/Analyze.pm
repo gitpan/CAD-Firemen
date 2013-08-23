@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 ######################
 #
-#    Copyright (C) 2011  TU Clausthal, Institut für Maschinenwesen, Joachim Langenbach
+#    Copyright (C) 2011  TU Clausthal, Institut fuer Maschinenwesen, Joachim Langenbach
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Analyze;
 {
-  $CAD::Firemen::Analyze::VERSION = '0.5.3';
+  $CAD::Firemen::Analyze::VERSION = '0.5.4';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(compare checkConfig checkTreeConfig optionsToIngoreAtPathCheckings);
@@ -550,7 +550,9 @@ sub checkTreeConfig {
 }
 
 1;
+
 __END__
+
 =pod
 
 =head1 NAME
@@ -559,7 +561,7 @@ CAD::Firemen::Analyze - Module provides functions to compare to lists with optio
 
 =head1 VERSION
 
-version 0.5.3
+version 0.5.4
 
 =head1 METHODS
 
@@ -633,4 +635,3 @@ This is free software, licensed under:
   The GNU General Public License, Version 2, June 1991
 
 =cut
-

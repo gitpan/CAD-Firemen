@@ -1,18 +1,19 @@
 ---
-abstract: 'Scripts and Modules to manage PTC(R) Pro/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.'
+abstract: 'Scripts and Modules to manage PTC(R) ProE/Engineer(R) / Creo(TM) configurations. Use perldoc CAD::Firemen to get an introduction to the usage of this distribution.'
 author:
   - 'Joachim Langenbach <langenbach@imw.tu-clausthal.de>'
 build_requires:
-  English: 0
+  Capture::Tiny: 0
   File::Basename: 0
-  File::Temp: 0
   FindBin: 0
-  Test::More: 0
-  perl: 5.006
+  Test::More: 0.88
+  Test::Script: 1.05
+  blib: 0
+  lib: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200015, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.132140'
 license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -41,4 +42,6 @@ requires:
   XML::LibXML: 0
   YAML::XS: 0
   constant: 0
-version: 0.5.3
+  strict: 0
+  warnings: 0
+version: 0.5.4

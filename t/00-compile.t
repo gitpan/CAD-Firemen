@@ -1,59 +1,54 @@
-#!perl
-
 use strict;
 use warnings;
 
-use Test::More;
+# This test was generated via Dist::Zilla::Plugin::Test::Compile 2.018
+
+use Test::More 0.88;
 
 
 
-use File::Find;
-use File::Temp qw{ tempdir };
+use Capture::Tiny qw{ capture };
 
-my @modules;
-find(
-  sub {
-    return if $File::Find::name !~ /\.pm\z/;
-    my $found = $File::Find::name;
-    $found =~ s{^lib/}{};
-    $found =~ s{[/\\]}{::}g;
-    $found =~ s/\.pm$//;
-    # nothing to skip
-    push @modules, $found;
-  },
-  'lib',
+my @module_files = qw(
+CAD/Firemen.pm
+CAD/Firemen/Analyze.pm
+CAD/Firemen/Change.pm
+CAD/Firemen/Change/Type.pm
+CAD/Firemen/Common.pm
+CAD/Firemen/Load.pm
+CAD/Firemen/Option/Check.pm
 );
 
-my @scripts;
-if ( -d 'bin' ) {
-    find(
-      sub {
-        return unless -f;
-        my $found = $File::Find::name;
-        # nothing to skip
-        push @scripts, $found;
-      },
-      'bin',
-    );
-}
+my @scripts = qw(
+bin/fm_check_config
+bin/fm_check_struct
+bin/fm_create_help
+bin/fm_diff_cdb
+bin/fm_diff_config
+bin/fm_option_info
+);
 
-my $plan = scalar(@modules) + scalar(@scripts);
-$plan ? (plan tests => $plan) : (plan skip_all => "no tests to run");
+# no fake home requested
 
+my @warnings;
+for my $lib (@module_files)
 {
-    # fake home for cpan-testers
-    # no fake requested ## local $ENV{HOME} = tempdir( CLEANUP => 1 );
-
-    like( qx{ $^X -Ilib -e "require $_; print '$_ ok'" }, qr/^\s*$_ ok/s, "$_ loaded ok" )
-        for sort @modules;
-
-    SKIP: {
-        eval "use Test::Script 1.05; 1;";
-        skip "Test::Script needed to test script compilation", scalar(@scripts) if $@;
-        foreach my $file ( @scripts ) {
-            my $script = $file;
-            $script =~ s!.*/!!;
-            script_compiles( $file, "$script script compiles" );
-        }
-    }
+    my ($stdout, $stderr, $exit) = capture {
+        system($^X, '-Mblib', '-e', qq{require q[$lib]});
+    };
+    is($?, 0, "$lib loaded ok");
+    warn $stderr if $stderr;
+    push @warnings, $stderr if $stderr;
 }
+
+use Test::Script 1.05;
+foreach my $file ( @scripts ) {
+    script_compiles( $file, "$file compiles" );
+}
+
+
+is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
+
+
+
+done_testing;

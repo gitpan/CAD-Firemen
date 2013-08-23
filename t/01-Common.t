@@ -114,7 +114,7 @@ BEGIN {
   ($result, $output) = runRedirectedAll(\&print2ColsRightAligned, "Super Test", "Result");
   # because of the failing GetTerminalSize() during the test run, we must use the default value of 100
   $width = 100 -  length("Result") - 2;
-  $result = sprintf("%-". $width ."s", "Super Test") ."Result[0m[0m
+  $result = sprintf("%-". $width ."s", "Super Test") ."[0mResult[0m[0m
 ";
   is($output, $result, "print2ColsRightAligned, without color");
 

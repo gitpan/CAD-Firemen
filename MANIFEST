@@ -5,6 +5,7 @@ MANIFEST
 META.yml
 Makefile.PL
 README
+SIGNATURE
 bin/fm_check_config
 bin/fm_check_struct
 bin/fm_create_help
@@ -48,10 +49,10 @@ t/07-Analyze-Config.t
 t/08-Analyze-CheckConfig.t
 t/09-Analyze-CheckTreeConfig.t
 t/author-critic.t
+t/author-test-eol.t
 t/release-cpan-changes.t
 t/release-dist-manifest.t
 t/release-distmeta.t
-t/release-eol.t
 t/release-has-version.t
 t/release-kwalitee.t
 t/release-minimum-version.t
@@ -61,5 +62,6 @@ t/release-pod-coverage.t
 t/release-pod-linkcheck.t
 t/release-pod-syntax.t
 t/release-portability.t
+t/release-synopsis.t
 t/release-test-version.t
 t/release-unused-vars.t

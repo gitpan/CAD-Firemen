@@ -1,3 +1,7 @@
+0.5.4 2013-08-23
+	* more error handling in CAD::Firemen/Common printBlock() and printColored()
+	* fixed windows linendings in 00-load.t
+	* fixed not disconnected database connection in fm_option_info, fm_diff_cdb, fm_diff_config, fm_check_config, fm_check_struct and fm_create_help
 0.5.3 2012-08-15
 	* fm_create_help fixed not escaped character
 0.5.2 2011-10-21
