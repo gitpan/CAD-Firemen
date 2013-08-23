@@ -1,3 +1,8 @@
+0.6.0 2013-08-23
+	* fixed overrided databases array of config file in CAD::Firemen::Common::dbConnect()
+	* Created databases are now named after APP-NAME-VERSION-PATCH-VERSION, to allow the presende of mutliple patch-versions of one main version (like Creo 2 M10 and Creo 2 M20)
+	* fixed error caused by not defined $dbh at END of the scripts
+	* Added fm_admin to administer configuration of CAD::Firemen
 0.5.4 2013-08-23
 	* more error handling in CAD::Firemen/Common printBlock() and printColored()
 	* fixed windows linendings in 00-load.t

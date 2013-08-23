@@ -459,7 +459,7 @@ if($environment){
 }
 
 END {
-  if(defined($dbh) && !$dbh->disconnect){
+  if(defined($dbh) && ($dbh != 0) && !$dbh->disconnect){
     print "Could not disconnect from database!\n";
     print "Error: ". $DBI::errstr;
     exit 1;
@@ -478,7 +478,7 @@ fm_check_struct - Runs some tests on a given file structure with custom files.
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 SYNOPSIS
 

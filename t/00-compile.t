@@ -20,6 +20,7 @@ CAD/Firemen/Option/Check.pm
 );
 
 my @scripts = qw(
+bin/fm_admin
 bin/fm_check_config
 bin/fm_check_struct
 bin/fm_create_help

@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Change::Type;
 {
-  $CAD::Firemen::Change::Type::VERSION = '0.5.4';
+  $CAD::Firemen::Change::Type::VERSION = '0.6.0';
 }
 use Exporter 'import';
 
@@ -51,7 +51,7 @@ CAD::Firemen::Change::Type - Constants to represant the change type of CAD::Fire
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 DESCRIPTION
 

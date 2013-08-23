@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen;
 {
-  $CAD::Firemen::VERSION = '0.5.4';
+  $CAD::Firemen::VERSION = '0.6.0';
 }
 
 use CAD::Firemen::Analyze;
@@ -66,7 +66,7 @@ CAD::Firemen - Scripts and Modules to manage PTC(R) ProE/Engineer(R) / Creo(TM) 
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 SYNOPSIS
 
@@ -77,6 +77,7 @@ version 0.5.4
 #  fm_diff_config PATH_TO_CONFIG_1 PATH_TO_CONFIG_2;
 #  fm_check_config PATH_TO_DATABASE.CDB PATH_TO_CONFIG;
 #  fm_check_struct PATH_TO_DATABASE.cdb PATH_TO_STRUCTURE;
+#  fm_admin
 
 =head1 DESCRIPTION
 
@@ -124,6 +125,10 @@ Check a complete structure with config files, templates, ...
 
   fm_check_struct PATH_TO_DATABASE.cdb PATH_TO_STRUCTURE
 
+To manage the configuration of CAD::Firemen
+
+  fm_admin
+
 =head1 METHODS
 
 =head2 printVersion
@@ -137,7 +142,7 @@ Actually it can look like this:
 
  ---
  databases:
-   proeWildfire5.0: /options-proeWildfire5.0.sqlite
+   proeWildfire-5.0-M060: /options-proeWildfire-5.0-M060.sqlite
  defaultPath: D:\Program Files\proeWildfire 5.0
  paths:
  - D:\Program Files\PTC\Creo 1.0\Common Files\F000
@@ -148,7 +153,7 @@ Nearly all settings are handled automatically. Only the settings defaultPath, de
 be interesting for you. The first one contains one of the paths listed beneath. The path
 listed as defaultPath is used as the default value on the path selection screen. If Firemen
 is not able to detect all of your PTC installations (it uses the \$ENV{PATH} to detect them),
-you can add them to the paths section like the already listed ones.
+you can add them to the paths section like the already listed ones. To manage those settings, use fm_admin.
 
 =head1 AUTHOR
 

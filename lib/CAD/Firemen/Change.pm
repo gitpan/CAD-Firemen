@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Change;
 {
-  $CAD::Firemen::Change::VERSION = '0.5.4';
+  $CAD::Firemen::Change::VERSION = '0.6.0';
 }
 use Exporter 'import';
 
@@ -335,7 +335,7 @@ CAD::Firemen::Change - Object to represant the changes of an option
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 DESCRIPTION
 

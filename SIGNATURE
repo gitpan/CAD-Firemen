@@ -14,19 +14,20 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 0a57463d148dd93c89f19f3e9bce1ac548827f5f Changes
+SHA1 f29e1f86283e7cb22f1c90d699f34a022388b57c Changes
 SHA1 45ff92c6e9f46afa2664f8013dea8aaeead845ee INSTALL
 SHA1 90d3a69daef21189aaf8db8a871b9c8772fc3b5d LICENSE
-SHA1 520d817c8b73cd58f7aac5af8d8550d8d94c6287 MANIFEST
-SHA1 bf632262181e9a6dd7cacff1fed3c4f4b4a8be9c META.yml
-SHA1 58e01e6fd05ad57fae0017552b024df2183ffe45 Makefile.PL
-SHA1 8184a2e84f4f82c98ad79b1f78bbda69da62ed48 README
-SHA1 f5ad9b5f2a5ff41f4bb0d2dbaf2f07af9d037b39 bin/fm_check_config
-SHA1 4d78cd67acb899cdc5a0f359fdbe72b1e547135d bin/fm_check_struct
-SHA1 506b04ef89989b1333b89111efbc71107f273907 bin/fm_create_help
-SHA1 b6aa7b10380d135b2ecaa86ce5c2da807507c8c8 bin/fm_diff_cdb
-SHA1 5f20b97c06726cd75a640c4da90a8c02686f255b bin/fm_diff_config
-SHA1 08de8230379d7a29da80a92a96d0408910da11de bin/fm_option_info
+SHA1 9e78cf3edee10fd76d54d0f44b6dbdfed82c4b82 MANIFEST
+SHA1 e4356e857040d79ae0669853e03e5db8f9c0cb57 META.yml
+SHA1 a5cd32234bf36f861c5635c134d6e71fc19c37a5 Makefile.PL
+SHA1 ea0671e7622036e44bbb0cb77a63abfe4a3d3b28 README
+SHA1 c1a8d8ea9fe275a106b2cf5431d9acddb782a385 bin/fm_admin
+SHA1 632b660e660a5cbc05d88ca72b0d11761a55e017 bin/fm_check_config
+SHA1 950fd70cc91a8f68b062d917854d70dce96e5df7 bin/fm_check_struct
+SHA1 1feb11fede92b4645a577157e08bd0039207c968 bin/fm_create_help
+SHA1 892a81675318bfd472b37c837b52d6480f369ecf bin/fm_diff_cdb
+SHA1 d83d3980c288c5ca4a8505983aef48bf36b2580a bin/fm_diff_config
+SHA1 17fa8ce0f279dbca976f9d562122a54680d5d895 bin/fm_option_info
 SHA1 746948ffaed8e263439725b7eefc92af120943e6 corpus/config-changed-doubles-new.pro
 SHA1 370ac717b1ce0db6b912e5672095c8ce432c538a corpus/config-changed-doubles-old.pro
 SHA1 e179a77f4ee0a42fa0547d93c22a25ea711c6ac1 corpus/config-checkConfig.cdb
@@ -43,16 +44,16 @@ SHA1 8635c7b7fc82b2a4d9694322d5fd9c69b213bf95 corpus/config-old.cdb
 SHA1 783ca149d2b2d06415cb6f2f429ead6dcb0e9184 corpus/config-old.pro
 SHA1 b3b3c659593a540bebf9390518aa94d003761347 corpus/tree-malformed.cfg
 SHA1 7e07d7377d7d17857eae3f0266e55f350c26c99f corpus/tree-ok.cfg
-SHA1 44b578d2bf5724f105d6cf090f00fee06aae10e5 dist.ini
+SHA1 b56e4ccf1cab28aa9c7d542f59b2ebc266addb35 dist.ini
 SHA1 1df5d0bcc7f759e44613efb14d4cfb26f734b74b ignore.txt
-SHA1 7d88cfa661aa616a3f8e2c66f8c9fc458dcb6743 lib/CAD/Firemen.pm
-SHA1 dca639b2eec4abecfdae274f40546312b9f73d19 lib/CAD/Firemen/Analyze.pm
-SHA1 644601efbe56bdafffd41e07bb380ceb2ef2f30b lib/CAD/Firemen/Change.pm
-SHA1 6281affcd0184e0917320e03754f305d0f58e223 lib/CAD/Firemen/Change/Type.pm
-SHA1 e17e2007206067af04c7bf57f19344e61a168ca4 lib/CAD/Firemen/Common.pm
-SHA1 1062aa60768cf5da2a9b88dedccc41d4693e2492 lib/CAD/Firemen/Load.pm
-SHA1 9c841dc67c8f05fc7c7c974f927730b084e36732 lib/CAD/Firemen/Option/Check.pm
-SHA1 64cd366ea15cd5df5aa8189a9cb920e14a81e43b t/00-compile.t
+SHA1 5c981191aa42dcf466268bad1a4005344c6d3bbb lib/CAD/Firemen.pm
+SHA1 bb59096b696ad956cd0129381b6ca0f558fe3c54 lib/CAD/Firemen/Analyze.pm
+SHA1 c0e8f02a095a2a30e3bdffb4f51ca71c902d030a lib/CAD/Firemen/Change.pm
+SHA1 67b77e73bd0fa23d8abaa7b24859b5236fd64e40 lib/CAD/Firemen/Change/Type.pm
+SHA1 a2f6ed520ae8e9d558bf73b69d050f987faa6e84 lib/CAD/Firemen/Common.pm
+SHA1 9b8ad8d6b5161b8b42ff313300e6f013acfef265 lib/CAD/Firemen/Load.pm
+SHA1 9631b0d98e3a3b3d5bb459fb372fc74c21ca5e3f lib/CAD/Firemen/Option/Check.pm
+SHA1 c9bc773c30e18c387423921e6eb018fc4f9a94c0 t/00-compile.t
 SHA1 642fb0da36045331665278d2100986f0891a9e7b t/00-load.t
 SHA1 e373706acd81495b8289f2a680e87a4fe2f4c30f t/01-Common.t
 SHA1 bec7e9fe4a387d61a4c308e4a19ce09c662fe414 t/02-Change.t
@@ -83,11 +84,11 @@ SHA1 d7221447937ab93002a123801def7be09748c106 t/release-unused-vars.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.21 (MingW32)
 
-iQEcBAEBAgAGBQJSF0koAAoJEHNCTFOF/FVDWK4H/3tHavI3UMPq2oR8eS28dHNp
-BjU8Q9JEhhZH5CUj2RcaQpnoHM/9whiNUiutcBWZo3riidkEXBPcWGT0PjL/hxI5
-clyxc/Lm4bhnkDDgNkTLDtLYYjIItwJ4a/69kMKt9Si92Sq2V9ioxYe53VIMno3o
-zGnymSsm0C+ziNKNleP3kfwUXzy2ltR4jriODPO6hexAhcDadtGLHZViRV4lpT4P
-1d90Jg3MEZb4MJr1cVrJYs9wY4upeLx38H7hqFze32W5O0mugJJSHCyVPAhVk486
-LVi/LBRa0atTjwTO9gl83M3p8K/lvrVsFsW8DHKOSAqnYOLcTAR6Ld/MXTv/N3Y=
-=KTQc
+iQEcBAEBAgAGBQJSF3y4AAoJEHNCTFOF/FVDZMsH/3JUE2PpsajLdGeJsO6oHDwk
+3F3LuZo/qU74QGQHT2bkFkFjsEw5LEmhNcpVFI9ASvN9fUFZcekqZBmXGgtwtEeC
+xNzKd8F5OADc6Cn/meeaPu+PciURHYPmgO9WsfqT2LW9t++J+UUw0lmOdcN8vWQc
+18k5PiyVpdSTw1SzwvrqX0i2DB0uOJsBVGf1VlD6Gf0KkPv0AnbtK/rk6WnPqKcE
+PCC1cAjX0dHYPUOnJspUcubxMZnxi5j6Rxjawg7nmlU/okdY8RevX/dtlZC4FELA
+p08xZpp3tMZ6zGXDwo+jZBdB3MpN2CQEdU3Rbu9rqUz7SBjoQSpuns2dNV9h39E=
+=cxDp
 -----END PGP SIGNATURE-----

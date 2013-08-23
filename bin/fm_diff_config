@@ -488,7 +488,7 @@ if($verbose > 0 || $printRemoved){
 }
 
 END {
-  if(defined($dbh) && !$dbh->disconnect){
+  if(defined($dbh) && ($dbh != 0) && !$dbh->disconnect){
     print "Could not disconnect from database!\n";
     print "Error: ". $DBI::errstr;
     exit 1;
@@ -507,7 +507,7 @@ fm_diff_config - Analyzes the differences between two config files.
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 SYNOPSIS
 

@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Common;
 {
-  $CAD::Firemen::Common::VERSION = '0.5.4';
+  $CAD::Firemen::Common::VERSION = '0.6.0';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(
@@ -42,6 +42,7 @@ our @EXPORT_OK = qw(
   getInstallationConfigCdb
   getInstallationConfigPro
   sharedDir
+  installationId
   dbConnect
   loadSettings
   saveSettings
@@ -234,13 +235,11 @@ sub getInstallationPath {
       push(@paths, $tempPaths[$i]);
     }
   }
-  # add the one from config, if they are not already there
-  my $ref = loadSettings();
-  my %config = ();
-  if(defined($ref)){
-    %config = %{$ref};
-    if(exists($config{"paths"})){
-      foreach my $dir (@{$config{"paths"}}){
+  # add the paths from config, if they are not already found
+  my $config = loadSettings();
+  if(defined($config)){
+    if(exists($config->{"paths"})){
+      foreach my $dir (@{$config->{"paths"}}){
         my $add = 1;
         foreach my $existing (@paths){
           if($existing eq $dir){
@@ -262,9 +261,9 @@ sub getInstallationPath {
     @paths = sort(@paths);
     # determine default path
     my $default = 0;
-    if(exists($config{"defaultPath"})){
+    if(exists($config->{"defaultPath"})){
       for(my $i = 0; $i < scalar(@paths); $i++){
-        if($config{"defaultPath"} eq $paths[$i]){
+        if($config->{"defaultPath"} eq $paths[$i]){
           $default = $i;
           last;
         }
@@ -295,8 +294,9 @@ sub getInstallationPath {
     }
   }
 
-  $config{"paths"} = \@paths;
-  saveSettings(\%config);
+  # add all found paths to config
+  $config->{"paths"} = \@paths;
+  saveSettings($config);
 
   return $result;
 }
@@ -333,10 +333,26 @@ sub sharedDir {
   return $dir;
 }
 
+sub installationId {
+  my $path = shift;
+  if(!defined($path)){
+    return "";
+   }
+  # get most upper folder (root folder) of creo or proe
+  if($path =~ m/^.+((?:creo|proe)[^(?:\\|\/)]+).{0,}(M[0-9]{1,})/i){
+    $path = $1 ."-". $2;
+  }
+  else{
+    return "";
+  }
+  $path =~ s/\s/-/g;
+  return $path;
+}
+
 sub dbConnect {
   my $installation = shift;
   my $verbose = shift;
-  my $dbh;
+  my $dbh = undef;
   if(!defined($verbose)){
     $verbose = 0;
   }
@@ -344,11 +360,7 @@ sub dbConnect {
     return $dbh;
   }
 
-  # get most upper folder (root folder) of creo or proe
-  if($installation =~ m/^.+((?:creo|proe)[^(?:\\|\/)]+).{0,}/i){
-    $installation = $1;
-  }
-  $installation =~ s/\s//g;
+  $installation = installationId($installation);
 
   if($installation eq ""){
     return $dbh;
@@ -361,7 +373,7 @@ sub dbConnect {
   if(defined($ref)){
     %config = %{$ref};
     if(exists($config{"databases"})){
-      my %dbs = %{$config{"databases"}};
+      %dbs = %{$config{"databases"}};
       if(exists($dbs{$installation})){
         $dbFile = $dbs{$installation};
       }
@@ -452,7 +464,7 @@ CAD::Firemen::Common - Shared functions used by other scripts from the Firemen m
 
 =head1 VERSION
 
-version 0.5.4
+version 0.6.0
 
 =head1 METHODS
 
@@ -525,6 +537,11 @@ Returns the path to the shared directory where all modules and scripts of this
 distribution places their files.
 
 If it does not exists, it creates it.
+
+=head2 installationId
+
+Compuates an installation identifier out of the creo installation path.
+This ID is used e. g. to create the database name.
 
 =head2 dbConnect
 

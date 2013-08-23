@@ -17,6 +17,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "CAD-Firemen",
   "EXE_FILES" => [
+    "bin/fm_admin",
     "bin/fm_check_config",
     "bin/fm_check_struct",
     "bin/fm_create_help",
@@ -61,7 +62,7 @@ my %WriteMakefileArgs = (
     "blib" => 0,
     "lib" => 0
   },
-  "VERSION" => "0.5.4",
+  "VERSION" => "0.6.0",
   "test" => {
     "TESTS" => "t/*.t"
   }
