@@ -1,3 +1,5 @@
+0.6.1 2013-08-26
+  * Fixed compile error in fm_admin
 0.6.0 2013-08-23
 	* fixed overrided databases array of config file in CAD::Firemen::Common::dbConnect()
 	* Created databases are now named after APP-NAME-VERSION-PATCH-VERSION, to allow the presende of mutliple patch-versions of one main version (like Creo 2 M10 and Creo 2 M20)

@@ -865,7 +865,7 @@ fm_create_help - Walks through an installation and tries to extract all options 
 
 =head1 VERSION
 
-version 0.6.0
+version 0.6.1
 
 =head1 SYNOPSIS
 

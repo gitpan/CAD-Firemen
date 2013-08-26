@@ -14,20 +14,20 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 f29e1f86283e7cb22f1c90d699f34a022388b57c Changes
+SHA1 325476b49f3e5f1f02e51111f4b6d7eef2fd10cc Changes
 SHA1 45ff92c6e9f46afa2664f8013dea8aaeead845ee INSTALL
 SHA1 90d3a69daef21189aaf8db8a871b9c8772fc3b5d LICENSE
 SHA1 9e78cf3edee10fd76d54d0f44b6dbdfed82c4b82 MANIFEST
-SHA1 e4356e857040d79ae0669853e03e5db8f9c0cb57 META.yml
-SHA1 a5cd32234bf36f861c5635c134d6e71fc19c37a5 Makefile.PL
-SHA1 ea0671e7622036e44bbb0cb77a63abfe4a3d3b28 README
-SHA1 c1a8d8ea9fe275a106b2cf5431d9acddb782a385 bin/fm_admin
-SHA1 632b660e660a5cbc05d88ca72b0d11761a55e017 bin/fm_check_config
-SHA1 950fd70cc91a8f68b062d917854d70dce96e5df7 bin/fm_check_struct
-SHA1 1feb11fede92b4645a577157e08bd0039207c968 bin/fm_create_help
-SHA1 892a81675318bfd472b37c837b52d6480f369ecf bin/fm_diff_cdb
-SHA1 d83d3980c288c5ca4a8505983aef48bf36b2580a bin/fm_diff_config
-SHA1 17fa8ce0f279dbca976f9d562122a54680d5d895 bin/fm_option_info
+SHA1 71068317b3959b13de2b6189f3e30016d2774a6f META.yml
+SHA1 b8e432c5ff67634ea6cffd6b95be362252254796 Makefile.PL
+SHA1 4c973730eea00937d610011aa099cbd0255b0811 README
+SHA1 25a8cf18dfbeb785afc7721ef8090680c1d7bcbe bin/fm_admin
+SHA1 7dbe304d5acf386194c31b40d501049c9b924b50 bin/fm_check_config
+SHA1 f0e31e401daf4248381dac5f3f94d78a010d4120 bin/fm_check_struct
+SHA1 0a2ac9e41274e938201d5e806a9f072d978dd2a9 bin/fm_create_help
+SHA1 04973255ff681e4b443c0c0a650e3d7f665900e8 bin/fm_diff_cdb
+SHA1 1db1e766517a128aaeb581aba921658ef68c0cb4 bin/fm_diff_config
+SHA1 9a446cb0dc7954e7692d5b36b57d1bd7102f1615 bin/fm_option_info
 SHA1 746948ffaed8e263439725b7eefc92af120943e6 corpus/config-changed-doubles-new.pro
 SHA1 370ac717b1ce0db6b912e5672095c8ce432c538a corpus/config-changed-doubles-old.pro
 SHA1 e179a77f4ee0a42fa0547d93c22a25ea711c6ac1 corpus/config-checkConfig.cdb
@@ -44,15 +44,15 @@ SHA1 8635c7b7fc82b2a4d9694322d5fd9c69b213bf95 corpus/config-old.cdb
 SHA1 783ca149d2b2d06415cb6f2f429ead6dcb0e9184 corpus/config-old.pro
 SHA1 b3b3c659593a540bebf9390518aa94d003761347 corpus/tree-malformed.cfg
 SHA1 7e07d7377d7d17857eae3f0266e55f350c26c99f corpus/tree-ok.cfg
-SHA1 b56e4ccf1cab28aa9c7d542f59b2ebc266addb35 dist.ini
+SHA1 e44e1effad708b77e57c672594c3ae28d93684ef dist.ini
 SHA1 1df5d0bcc7f759e44613efb14d4cfb26f734b74b ignore.txt
-SHA1 5c981191aa42dcf466268bad1a4005344c6d3bbb lib/CAD/Firemen.pm
-SHA1 bb59096b696ad956cd0129381b6ca0f558fe3c54 lib/CAD/Firemen/Analyze.pm
-SHA1 c0e8f02a095a2a30e3bdffb4f51ca71c902d030a lib/CAD/Firemen/Change.pm
-SHA1 67b77e73bd0fa23d8abaa7b24859b5236fd64e40 lib/CAD/Firemen/Change/Type.pm
-SHA1 a2f6ed520ae8e9d558bf73b69d050f987faa6e84 lib/CAD/Firemen/Common.pm
-SHA1 9b8ad8d6b5161b8b42ff313300e6f013acfef265 lib/CAD/Firemen/Load.pm
-SHA1 9631b0d98e3a3b3d5bb459fb372fc74c21ca5e3f lib/CAD/Firemen/Option/Check.pm
+SHA1 96a44228dd6c9abaf6112e366d68101325c48d1d lib/CAD/Firemen.pm
+SHA1 5813b3cf7ecbb2a9f03478319fc87049987ea298 lib/CAD/Firemen/Analyze.pm
+SHA1 19bbf30c30537222820684b9493c82a60e7292e9 lib/CAD/Firemen/Change.pm
+SHA1 7d0ed7a4f59236aae6732059c462e2e673be0a6a lib/CAD/Firemen/Change/Type.pm
+SHA1 6e13c5af716f7069ea4656ed4ab9f9ca467e4c0a lib/CAD/Firemen/Common.pm
+SHA1 c3916f2186866ff19e7a7ed5716253e1a8b40aff lib/CAD/Firemen/Load.pm
+SHA1 782bd5372a3b16f929b3636b98d95ad8d18bd608 lib/CAD/Firemen/Option/Check.pm
 SHA1 c9bc773c30e18c387423921e6eb018fc4f9a94c0 t/00-compile.t
 SHA1 642fb0da36045331665278d2100986f0891a9e7b t/00-load.t
 SHA1 e373706acd81495b8289f2a680e87a4fe2f4c30f t/01-Common.t
@@ -84,11 +84,11 @@ SHA1 d7221447937ab93002a123801def7be09748c106 t/release-unused-vars.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.21 (MingW32)
 
-iQEcBAEBAgAGBQJSF3y4AAoJEHNCTFOF/FVDZMsH/3JUE2PpsajLdGeJsO6oHDwk
-3F3LuZo/qU74QGQHT2bkFkFjsEw5LEmhNcpVFI9ASvN9fUFZcekqZBmXGgtwtEeC
-xNzKd8F5OADc6Cn/meeaPu+PciURHYPmgO9WsfqT2LW9t++J+UUw0lmOdcN8vWQc
-18k5PiyVpdSTw1SzwvrqX0i2DB0uOJsBVGf1VlD6Gf0KkPv0AnbtK/rk6WnPqKcE
-PCC1cAjX0dHYPUOnJspUcubxMZnxi5j6Rxjawg7nmlU/okdY8RevX/dtlZC4FELA
-p08xZpp3tMZ6zGXDwo+jZBdB3MpN2CQEdU3Rbu9rqUz7SBjoQSpuns2dNV9h39E=
-=cxDp
+iQEcBAEBAgAGBQJSGvTzAAoJEHNCTFOF/FVDYb4H/0SV8kgj+n1yArKTlaQtKENZ
+vb2IeJzqTKl5VrgAmA2Un7LEu/j/l/38J4oAtMBwY4mkgUoHaUv+6Nrv9zdRk2jw
+6+DpR7e6FFwnU5fC5LaYyWZECxQhkpOc8LPcOvisegXY825qrT/J4LvmQF4k4EZr
+8iNv8mtfomrBMyDJjrXL4Df0pSnaV5hl84yXlUxEipdUiVOhCgE/+uOZtrhGgHex
+MEzNo52bcdyFTqm0OJ70V9ikxg/9qGz0mENTNaLs1Ofhfy5Sc/xm4BthdPRdGkjv
+wYgE1DKHh3ewIeAlqv4XlsaUGmsi4/DeBeRxmbp7Gb6op85KxrBbywJKrBrQ3r8=
+=mmxD
 -----END PGP SIGNATURE-----

@@ -236,7 +236,7 @@ if($cleanup){
   }
   my %databases;
   my @paths = @{$settings->{"paths"}};
-  foreach my $key (sort(keys($settings->{"databases"}))){
+  foreach my $key (sort(keys(%{$settings->{"databases"}}))){
     # only use existent databases
     my $dbFile = sharedDir() ."/". $settings->{"databases"}->{$key};
     if($verbose > 0){
@@ -321,7 +321,7 @@ fm_admin - Helper to change the configuration of CAD::Firemen
 
 =head1 VERSION
 
-version 0.6.0
+version 0.6.1
 
 =head1 SYNOPSIS
 

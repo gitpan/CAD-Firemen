@@ -507,7 +507,7 @@ fm_diff_config - Analyzes the differences between two config files.
 
 =head1 VERSION
 
-version 0.6.0
+version 0.6.1
 
 =head1 SYNOPSIS
 
