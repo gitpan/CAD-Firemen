@@ -30,15 +30,15 @@ BEGIN {
   use_ok( 'CAD::Firemen::Change' ) || print "Bail out!\n";
 
   # expected result tree
-  my %expAdded = (22 => "WEB_BROWSER_HOMEPAGE");
+  my %expAdded = ("WEB_BROWSER_HOMEPAGE" => 22);
   my %expChanged = (
     "BELL" => [new CAD::Firemen::Change("name" => "BELL")],
     "PRO_UNIT_LENGTH" => [new CAD::Firemen::Change("name" => "PRO_UNIT_LENGTH")],
     "PROMPT_ON_EXIT" => [new CAD::Firemen::Change("name" => "PROMPT_ON_EXIT")]
   );
   my %expRemoved = (
-    35 => "SHOW_SHADED_EDGES",
-    37 => "UI_THEME"
+    "SHOW_SHADED_EDGES" => 35,
+    "UI_THEME" => 37
   );
 
   # compare
@@ -57,15 +57,15 @@ BEGIN {
   is(scalar(keys(%resAdded)), scalar(keys(%expAdded)), "All added options found");
   is(scalar(keys(%resChanged)), scalar(keys(%expChanged)), "All changed options found");
   is(scalar(keys(%resRemoved)), scalar(keys(%expRemoved)), "All removed options found");
-  foreach my $line (keys(%resAdded)){
+  foreach my $opt (keys(%resAdded)){
     my $found = 0;
-    foreach my $line1(keys(%expAdded)){
-      if(($line == $line1) && ($resAdded{$line} eq $expAdded{$line1})){
+    foreach my $opt1(keys(%expAdded)){
+      if(($opt eq $opt1) && ($resAdded{$opt} eq $expAdded{$opt1})){
         $found = 1;
         last;
       }
     }
-    is($found, 1, "Added option ". $resAdded{$line} ." is found");
+    is($found, 1, "Added option ". $resAdded{$opt} ." is found");
   }
   foreach my $opt (keys(%resChanged)){
     my $found = 0;
@@ -78,30 +78,30 @@ BEGIN {
     }
     is($found, 1, "Changed option ". $opt ." is found");
   }
-  foreach my $line (keys(%resRemoved)){
+  foreach my $opt (keys(%resRemoved)){
     my $found = 0;
-    foreach my $line1(keys(%expRemoved)){
-      if(($line == $line1) && ($resRemoved{$line} eq $expRemoved{$line1})){
+    foreach my $opt1(keys(%expRemoved)){
+      if(($opt eq $opt1) && ($resRemoved{$opt} eq $expRemoved{$opt1})){
         $found = 1;
         last;
       }
     }
-    is($found, 1, "Removed option ". $resRemoved{$line} ." is found");
+    is($found, 1, "Removed option ". $resRemoved{$opt} ." is found");
   }
 
   # another example with changed duplicates
   # expected result tree
   %expAdded = (
-    100 => "FRT_ENABLED",
-    103 => "PEN_TABLE_FILE",
-    106 => "PDF_USE_PENTABLE",
-    109 => "BMGR_PREF_FILE",
-    112 => "DEFAULT_DRAW_SCALE",
-    115 => "SKETCHER_LOCK_MODIFIED_DIMS",
-    119 => "MASS_PROPERTY_CALCULATE",
-    122 => "TOLERANCE_STANDARD",
-    125 => "WELD_UI_STANDARD",
-    128 => "PRO_MATERIAL_DIR"
+    "FRT_ENABLED" => 100,
+    "PEN_TABLE_FILE" => 103,
+    "PDF_USE_PENTABLE" => 106,
+    "BMGR_PREF_FILE" => 109,
+    "DEFAULT_DRAW_SCALE" => 112,
+    "SKETCHER_LOCK_MODIFIED_DIMS" => 115,
+    "MASS_PROPERTY_CALCULATE" => 119,
+    "TOLERANCE_STANDARD" => 122,
+    "WELD_UI_STANDARD" => 125,
+    "PRO_MATERIAL_DIR" => 128
   );
   %expChanged = (
     "DISPLAY" => [new CAD::Firemen::Change(
@@ -153,9 +153,9 @@ BEGIN {
     ]
   );
   %expRemoved = (
-    10 => "SPIN_CONTROL",
-    55 => "DRAWING_FILE_EDITOR",
-    85 => "SKETCHER_INTENT_MANAGER"
+    "SPIN_CONTROL" => 10,
+    "DRAWING_FILE_EDITOR" => 55,
+    "SKETCHER_INTENT_MANAGER" => 85
   );
   my %expDuplicates = (
     "PROTKDAT" => "Duplicated in second config at lines 99, 98, 95"
@@ -176,15 +176,15 @@ BEGIN {
   is(scalar(keys(%resChanged)), scalar(keys(%expChanged)), "All changed options found");
   is(scalar(keys(%resRemoved)), scalar(keys(%expRemoved)), "All removed options found");
   is(scalar(keys(%resDuplicates)), scalar(keys(%expDuplicates)), "All duplicated options found");
-  foreach my $line (keys(%resAdded)){
+  foreach my $opt (keys(%resAdded)){
     my $found = 0;
-    foreach my $line1(keys(%expAdded)){
-      if(($line == $line1) && ($resAdded{$line} eq $expAdded{$line1})){
+    foreach my $opt1(keys(%expAdded)){
+      if(($opt eq $opt1) && ($resAdded{$opt} eq $expAdded{$opt1})){
         $found = 1;
         last;
       }
     }
-    is($found, 1, "Added option ". $resAdded{$line} ." is found");
+    is($found, 1, "Added option ". $resAdded{$opt} ." is found");
   }
   foreach my $opt (keys(%expChanged)){
     my $found = 0;
@@ -203,15 +203,15 @@ BEGIN {
       }
     }
   }
-  foreach my $line (keys(%resRemoved)){
+  foreach my $opt (keys(%resRemoved)){
     my $found = 0;
-    foreach my $line1(keys(%expRemoved)){
-      if(($line == $line1) && ($resRemoved{$line} eq $expRemoved{$line1})){
+    foreach my $opt1(keys(%expRemoved)){
+      if(($opt eq $opt1) && ($resRemoved{$opt} eq $expRemoved{$opt1})){
         $found = 1;
         last;
       }
     }
-    is($found, 1, "Removed option ". $resRemoved{$line} ." is found");
+    is($found, 1, "Removed option ". $resRemoved{$opt} ." is found");
   }
 }
 

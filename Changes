@@ -1,3 +1,6 @@
+0.6.2 2014-02-07
+	* Fixed errors in comparing cdb files fm_diff_cdb and Analyze::compare()
+	* Fixed typo in help of fm_diff_cdb
 0.6.1 2013-08-26
   * Fixed compile error in fm_admin
 0.6.0 2013-08-23

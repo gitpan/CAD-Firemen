@@ -40,7 +40,7 @@ sub help{
   print "\n";
   print " --help        -h  Prints this help.\n";
   print " --version         Prints current version.\n";
-  print " --vernose     -v  Verbose level. 0 - least output, 2 most output\n";
+  print " --verbose     -v  Verbose level. 0 - least output, 2 most output\n";
   print " --added       -a  Print added options (Regardless of verbose level)\n";
   print " --removed     -r  Print removed options (Regardless of verbose level)\n";
   print " --changed     -c  Print changed options (Regardless of verbose level)\n";
@@ -215,45 +215,11 @@ else{
   print2ColsRightAligned("Found new options in ". $newUrl,  scalar(keys(%newOptions)), "green");
 }
 
-if($verbose > 1){
-  foreach my $key (sort(keys(%oldOptions))){
-    print $key ."\n";
-    foreach my $param (@{$oldOptions{$key}}){
-      print "   ". $param ."\n";
-    }
-  }
-}
-
 my ($ref1, $ref2, $ref3, $ref4) = compare(\%oldOptions, \%newOptions);
 %addedOptions = %{$ref1};
+%changedOptions = %{$ref2};
 %removedOptions = %{$ref3};
 %duplicatedOptions = %{$ref4};
-
-# Analyze changes
-foreach my $opt (keys(%oldOptions)){
-  # just skip removed ones, because they are already handled
-  if(!exists($newOptions{$opt})){
-    next;
-  }
-  # check that all values are the same
-  my $change = new CAD::Firemen::Change("name" => $opt);
-  $change->setPossibleValuesOld([keys(%{$oldOptions{$opt}})]);
-  $change->setPossibleValuesNew([keys(%{$newOptions{$opt}})]);
-  foreach my $value (keys(%{$oldOptions{$opt}})){
-    if($oldOptions{$opt}->{$value}){
-      $change->setDefaultValueOld($value);
-    }
-  }
-  foreach my $value (keys(%{$newOptions{$opt}})){
-    if($newOptions{$opt}->{$value}){
-      $change->setDefaultValueNew($value);
-    }
-  }
-  $change->evalChange();
-  if($change->changeType(CAD::Firemen::Change::Type->ValuesChanged) || $change->changeType(CAD::Firemen::Change::Type->DefaultValueChanged)){
-    $changedOptions{$opt} = $change;
-  }
-}
 
 print2ColsRightAligned("Duplicates", scalar(keys(%duplicatedOptions)));
 if($verbose > 0 || $printAdded || $printChanged ||$printRemoved){
@@ -334,7 +300,7 @@ fm_diff_cdb - Analyzes and displays the differences between two cdb files.
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 SYNOPSIS
 

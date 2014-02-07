@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Option::Check;
 {
-  $CAD::Firemen::Option::Check::VERSION = '0.6.1';
+  $CAD::Firemen::Option::Check::VERSION = '0.6.2';
 }
 use Exporter 'import';
 
@@ -115,7 +115,7 @@ CAD::Firemen::Option::Check - An option check error
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 DESCRIPTION
 

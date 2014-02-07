@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Common;
 {
-  $CAD::Firemen::Common::VERSION = '0.6.1';
+  $CAD::Firemen::Common::VERSION = '0.6.2';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(
@@ -464,7 +464,7 @@ CAD::Firemen::Common - Shared functions used by other scripts from the Firemen m
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 METHODS
 

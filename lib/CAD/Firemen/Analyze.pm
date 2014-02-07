@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Analyze;
 {
-  $CAD::Firemen::Analyze::VERSION = '0.6.1';
+  $CAD::Firemen::Analyze::VERSION = '0.6.2';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(compare checkConfig checkTreeConfig optionsToIngoreAtPathCheckings);
@@ -68,7 +68,7 @@ sub compare {
     }
     if(!exists($options1{$opt})){
       my @keys = keys(%{$options2{$opt}});
-      $added{$keys[0]} = $opt;
+      $added{$opt} = $keys[0];
     }
     else{
       if(scalar(keys(%{$options1{$opt}})) > 1){
@@ -88,7 +88,7 @@ sub compare {
       my @keys1 = sort(keys(%{$options1{$opt}}));
       my @keys2 = sort(keys(%{$options2{$opt}}));
       if(ref($options1{$opt}->{$keys1[0]}) eq "HASH"){
-        # it's the format of the cdb files, does not try to detect changes
+        # it's the format of the cdb files, do not try to detect changes
         next;
       }
       if(scalar(@keys1) < scalar(@keys2)){
@@ -125,7 +125,7 @@ sub compare {
   foreach my $opt (sort(keys(%options1))){
     if(!exists($options2{$opt})){
       my @keys = keys(%{$options1{$opt}});
-      $removed{$keys[0]} = $opt;
+      $removed{$opt} = $keys[0];
     }
   }
 
@@ -561,7 +561,7 @@ CAD::Firemen::Analyze - Module provides functions to compare to lists with optio
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 METHODS
 

@@ -33,11 +33,11 @@ BEGIN {
   my %expChanged = ();
   my %expRemoved = ();
 
-  %expAdded = (7 => "ACCESSORY_WINDOW_DISPLAY");
+  %expAdded = ("ACCESSORY_WINDOW_DISPLAY" => 7);
 
   %expRemoved = (
-    7 => "THIS_OPTION_DOES_NOT_EXISTS_IN_NEW_CDB",
-    12 => "THIS_OPTION_DOES_NOT_EXISTS_IN_NEW_CDB_TOO"
+    "THIS_OPTION_DOES_NOT_EXISTS_IN_NEW_CDB" => 7,
+    "THIS_OPTION_DOES_NOT_EXISTS_IN_NEW_CDB_TOO" => 12
   );
 
   # compare

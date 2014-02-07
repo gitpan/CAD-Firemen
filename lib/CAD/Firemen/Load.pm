@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen::Load;
 {
-  $CAD::Firemen::Load::VERSION = '0.6.1';
+  $CAD::Firemen::Load::VERSION = '0.6.2';
 }
 use Exporter 'import';
 our @EXPORT_OK = qw(loadConfig loadCDB loadDatabase);
@@ -105,9 +105,9 @@ sub loadCDB {
     if($line =~ m/^([^\s]+)\s{0,}\( -[\w\d]+\s{0,}\)/){
       my $ref;
       my $error = "";
-      my $line = $i;
+      my $lineNumber = $i;
       ($ref, $i, $error) = _extractParameters($CDB, $i);
-      $results{uc($1)} = { $line => $ref };
+      $results{uc($1)} = { $lineNumber => $ref };
       if($error ne ""){
         $errors{$i} = $error;
       }
@@ -214,7 +214,7 @@ CAD::Firemen::Load - Module to parse files from Firemen (like pro and cdb files)
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 METHODS
 

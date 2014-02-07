@@ -26,7 +26,7 @@ use warnings;
 
 package CAD::Firemen;
 {
-  $CAD::Firemen::VERSION = '0.6.1';
+  $CAD::Firemen::VERSION = '0.6.2';
 }
 
 use CAD::Firemen::Analyze;
@@ -66,7 +66,7 @@ CAD::Firemen - Scripts and Modules to manage PTC(R) ProE/Engineer(R) / Creo(TM) 
 
 =head1 VERSION
 
-version 0.6.1
+version 0.6.2
 
 =head1 SYNOPSIS
 
